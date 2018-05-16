@@ -2,6 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageLicenseUrl>https://github.com/asparlose/Asparlose.Interop.Discord.Rpc.Win32/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/asparlose/Asparlose.Interop.Discord.Rpc.Win32</PackageProjectUrl>
+    <Authors>Asparlose</Authors>
+    <Company>Asparlose</Company>
   </PropertyGroup>
 
   <ItemGroup>
