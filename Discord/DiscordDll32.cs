@@ -2,25 +2,25 @@
 
 class DiscordDll32 : IDiscordDll
 {
-    [DllImport("discord-rpc_x86", EntryPoint = "Discord_Initialize", CallingConvention = CallingConvention.Cdecl)]
+    [DllImport("discord-rpc-32", EntryPoint = "Discord_Initialize", CallingConvention = CallingConvention.Cdecl)]
     public static extern void Initialize(string applicationId, ref DiscordRpc.EventHandlers handlers, bool autoRegister, string optionalSteamId);
 
-    [DllImport("discord-rpc_x86", EntryPoint = "Discord_Shutdown", CallingConvention = CallingConvention.Cdecl)]
+    [DllImport("discord-rpc-32", EntryPoint = "Discord_Shutdown", CallingConvention = CallingConvention.Cdecl)]
     public static extern void Shutdown();
 
-    [DllImport("discord-rpc_x86", EntryPoint = "Discord_RunCallbacks", CallingConvention = CallingConvention.Cdecl)]
+    [DllImport("discord-rpc-32", EntryPoint = "Discord_RunCallbacks", CallingConvention = CallingConvention.Cdecl)]
     public static extern void RunCallbacks();
 
-    [DllImport("discord-rpc_x86", EntryPoint = "Discord_UpdatePresence", CallingConvention = CallingConvention.Cdecl)]
+    [DllImport("discord-rpc-32", EntryPoint = "Discord_UpdatePresence", CallingConvention = CallingConvention.Cdecl)]
     private static extern void UpdatePresenceNative(ref DiscordRpc.RichPresenceStruct presence);
 
-    [DllImport("discord-rpc_x86", EntryPoint = "Discord_ClearPresence", CallingConvention = CallingConvention.Cdecl)]
+    [DllImport("discord-rpc-32", EntryPoint = "Discord_ClearPresence", CallingConvention = CallingConvention.Cdecl)]
     public static extern void ClearPresence();
 
-    [DllImport("discord-rpc_x86", EntryPoint = "Discord_Respond", CallingConvention = CallingConvention.Cdecl)]
+    [DllImport("discord-rpc-32", EntryPoint = "Discord_Respond", CallingConvention = CallingConvention.Cdecl)]
     public static extern void Respond(string userId, Asparlose.Interop.Discord.Rpc.Win32.DiscordRpcReply reply);
 
-    [DllImport("discord-rpc_x86", EntryPoint = "Discord_UpdateHandlers", CallingConvention = CallingConvention.Cdecl)]
+    [DllImport("discord-rpc-32", EntryPoint = "Discord_UpdateHandlers", CallingConvention = CallingConvention.Cdecl)]
     public static extern void UpdateHandlers(ref DiscordRpc.EventHandlers handlers);
 
     void IDiscordDll.ClearPresence() => ClearPresence();

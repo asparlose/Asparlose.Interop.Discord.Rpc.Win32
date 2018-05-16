@@ -10,15 +10,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="discord-rpc_x64.dll">
+    <Content Include="discord-rpc-32.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="discord-rpc_x86.dll">
+    <Content Include="discord-rpc-64.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    </Content>
   </ItemGroup>
 
 </Project>
