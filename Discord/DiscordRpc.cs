@@ -5,18 +5,7 @@ using System.Text;
 
 class DiscordRpc
 {
-    public static readonly IDiscordDll dll;
-    static DiscordRpc()
-    {
-        if (Environment.Is64BitProcess)
-        {
-            dll = new DiscordDll64();
-        }
-        else
-        {
-            dll = new DiscordDll32();
-        }
-    }
+    public static readonly DiscordDll dll = DiscordDll.Create();
 
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
     public delegate void ReadyCallback(ref DiscordUser connectedUser);
@@ -78,7 +67,7 @@ class DiscordRpc
     public static void UpdatePresence(RichPresence presence)
     {
         var presencestruct = presence.GetStruct();
-        dll.UpdatePresenceNative(ref presencestruct);
+        dll.UpdatePresence(ref presencestruct);
         presence.FreeMem();
     }
 

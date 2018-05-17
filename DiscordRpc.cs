@@ -2,7 +2,7 @@
 
 namespace Asparlose.Interop.Discord.Rpc.Win32
 {
-    public class DiscordRpc : IDisposable
+    public class DiscordRpc : DisposableObject
     {
         readonly global::DiscordRpc.EventHandlers handlers = new global::DiscordRpc.EventHandlers();
 
@@ -29,7 +29,6 @@ namespace Asparlose.Interop.Discord.Rpc.Win32
         private void RequestCallback(ref global::DiscordRpc.DiscordUser request)
             => OnRequest(new DiscordUser(request));
 
-
         protected virtual void OnReady(DiscordUser user)
             => Ready?.Invoke(this, new UserEventArgs(user));
 
@@ -54,32 +53,16 @@ namespace Asparlose.Interop.Discord.Rpc.Win32
         public event EventHandler<TokenEventArgs> Join;
         public event EventHandler<TokenEventArgs> Spectate;
         public event EventHandler<UserEventArgs> Request;
-
-        private bool disposedValue = false;
-
+        
         public void ClearPresence() => global::DiscordRpc.dll.ClearPresence();
         public void RunCallbacks() => global::DiscordRpc.dll.RunCallbacks();
         public void Respond(string userId, DiscordRpcReply reply) => global::DiscordRpc.dll.Respond(userId, reply);
 
-        protected virtual void Dispose(bool disposing)
+        protected override void ReleaseUnmanagedResources()
         {
-            if (!disposedValue)
-            {
-                if (disposing)
-                {
-                    global::DiscordRpc.dll.Shutdown();
-                }
+            base.ReleaseUnmanagedResources();
 
-                disposedValue = true;
-            }
-        }
-
-        ~DiscordRpc() => Dispose(false);
-        
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
+            global::DiscordRpc.dll.Shutdown();
+        }        
     }
 }
